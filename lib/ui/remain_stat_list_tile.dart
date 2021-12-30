@@ -7,7 +7,14 @@ class RemainStatListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _buildRemainStatWidget(store);
+    return ListTile(
+      title: Text(store.name),
+      subtitle: Text(store.addr),
+      trailing: _buildRemainStatWidget(store),
+      onTap: () {
+        print('tap');
+      },
+    );
   }
 
   Widget _buildRemainStatWidget(Store store) {

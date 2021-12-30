@@ -28,13 +28,7 @@ class MainPage extends StatelessWidget {
           ? loadingWidget()
           : ListView(
               children: storeView.stores.map((e) {
-                return ListTile(
-                  title: Text(e.name),
-                  subtitle: Text(e.addr),
-                  trailing: RemainStatListTile(
-                    store: e,
-                  ),
-                );
+                return RemainStatListTile(store: e);
               }).toList(),
             ),
     );
