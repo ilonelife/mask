@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mask/ui/remain_stat_list_tile.dart';
-import 'package:mask/view/store_view.dart';
+import 'package:mask/view/store_model.dart';
 import 'package:provider/provider.dart';
 
 class MainPage extends StatelessWidget {
@@ -8,26 +8,27 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final storeView = Provider.of<StoreView>(context);
+    final storeModel =
+        context.watch<StoreModel>(); //Provider.of<StoreView>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          '마스크 재고 있는 곳 : ${storeView.stores.length} 곳',
+          '마스크 재고 있는 곳 : ${storeModel.stores.length} 곳',
           style: const TextStyle(fontSize: 16),
         ),
         actions: [
           IconButton(
             onPressed: () {
-              storeView.fetchMaskStock();
+              storeModel.fetch();
             },
             icon: const Icon(Icons.refresh),
           ),
         ],
       ),
-      body: storeView.isLoading == true
+      body: storeModel.isLoading == true
           ? loadingWidget()
           : ListView(
-              children: storeView.stores.map((e) {
+              children: storeModel.stores.map((e) {
                 return RemainStatListTile(store: e);
               }).toList(),
             ),

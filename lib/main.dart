@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mask/ui/main_page.dart';
-import 'package:mask/view/store_view.dart';
+import 'package:mask/view/store_model.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     ChangeNotifierProvider.value(
-      value: StoreView(),
+      value: StoreModel(),
       child: const MyApp(),
     ),
   );
